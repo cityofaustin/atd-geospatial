@@ -2,8 +2,8 @@
 name: CTN Data Updates
 about: Tracks edits, updates to CTN
 title: CTN Updates MM/DD
-labels: 'Need: 1-Must Have, Team: Geo, Type: Data, Type: Feature, Workgroup: ATSD,
-  Workgroup: DTS, Workgroup: PWD, Workgroup: SDD'
+labels: 'Need: 1-Must Have, Type: Data, Type: Feature, Workgroup: ATSD, Workgroup:
+  DTS, Workgroup: PWD, Workgroup: SDD'
 assignees: alan-deanda
 
 ---
