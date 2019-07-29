@@ -1,6 +1,6 @@
 ---
 name: GIMOB Monthly Meeting
-about: GIMOB is a monthly meeting that the GIS SPOC attends to represent ATD .
+about: GIMOB is a monthly meeting that the GIS SPOC attends
 title: GIMOB Meeting - month year
 labels: 'Impact: 4-None, Service: Geo, Type: Meeting, Workgroup: DTS'
 assignees: jaime-mckeown
