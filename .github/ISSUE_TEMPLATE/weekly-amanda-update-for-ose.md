@@ -7,4 +7,6 @@ assignees: jaime-mckeown
 
 ---
 
-Run FME workbench to create new AMANDA street closure data for this week. Updated the layer in the Mxd and both Web Maps on AGOL.
+Run AMANDA_ROWstreetevents_EventTitle FME workbench to create new AMANDA street closure data for the current week. Update the layer in the Mxd, publish to AGOL, and then update the Street Events and ACE Downtown Conflicts Web Maps on AGOL.
+
+Follow Weekly_FME_Update_for_Special_Events.doc located in G:\ATD\ATD_GIS\Office_of_Special_Events\OSE_GIS\Documents for steps to complete.
