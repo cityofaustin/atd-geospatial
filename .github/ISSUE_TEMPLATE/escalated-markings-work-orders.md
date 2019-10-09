@@ -10,18 +10,18 @@ assignees: alan-deanda
 
 ## Instructions ##
 Use the appropriate section below to list the current issue with a work order that is preventing it from closing. Include a link to the work order section where the main issue is located - be it in the details, jobs, or GIS QA section. 
-Markdown syntax for embedding links: `[work order](copy_url_here)`
+Markdown syntax for embedding links: `[issue | group | location](copy_url_here)`
 
 
-### Work order information-related questions ###
+## Work order information-related questions ##
 Use this section to list work orders that need clarification because the work order has missing, contradicting, or incorrect information.
 
 
 
-### Digitization questions ###
+## Digitization questions ##
 Use this section to list work orders that include markings that we a) don't currently digitize b) documentation is insufficient to digitize confidently, and accurately.
 
 
 
-### Data tracker enhancements ###
+## Data tracker enhancements ##
 Use this section to list work orders that exemplify issues with the data tracker user interface that could be improved to make the digitization workflow easier and more effective.
