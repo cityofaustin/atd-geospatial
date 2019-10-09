@@ -10,6 +10,7 @@ assignees: alan-deanda
 _ total work orders currently in GIS QA
 
 Worked on _ work order(s)
+Escalated _ work order(s)
 Created/updated _ markings short line features
 Created/updated _ markings specialty line features
 Created/updated _ markings specialty point features
