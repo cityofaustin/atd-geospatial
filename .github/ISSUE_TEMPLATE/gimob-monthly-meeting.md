@@ -7,4 +7,4 @@ assignees: jaime-mckeown
 
 ---
 
-Attend the month GIMOB Meeting. Will add my notes to OneNote referenced in the Epic.
+Attend the month GIMOB Meeting. Will add my notes to a comment below.
