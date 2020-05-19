@@ -2,7 +2,7 @@
 # Streets_for_PHBs_ASMP.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 05/08/2020
+# Modified on: 05/19/2020
 #------------------------------------
 
 # Import modules
@@ -127,6 +127,15 @@ arcpy.AddField_management("streetSelectLayer", "HH_INCOME", "LONG", "", "", "", 
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "POP_DENSITY", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "CSR", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_DATE", "DATE", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+
 
 # Calculate HH_INCOME and POP_DENSITY to 0 (prep for analysis)
 arcpy.CalculateField_management("streetSelectLayer", "HH_INCOME", 0, "", "")
@@ -160,16 +169,6 @@ print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "PED_CRASH_400", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "PED_CRASH_ALL", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
-print "\n", arcpy.GetMessages()
-
-# Add Field for Request Category on Street_Select_PHB and additional fields from layer
-arcpy.AddField_management("streetSelectLayer", "CSR", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
-print "\n", arcpy.GetMessages()
-arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_DATE", "DATE", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
-print "\n", arcpy.GetMessages()
-arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
-print "\n", arcpy.GetMessages()
-arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 
 # Make Feature Layer for asmp_polygons layer
