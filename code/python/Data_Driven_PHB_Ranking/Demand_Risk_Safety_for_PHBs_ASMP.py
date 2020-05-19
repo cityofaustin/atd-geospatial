@@ -2,7 +2,7 @@
 # Demand_Risk_Safety_for_PHBs_ASMP.py
 # Runs analysis on input Demand, Risk, and Safety Data for use in Streets_for_PHBs Script processing
 # Created by: Jaime McKeown
-# Modified on: 05/08/2020
+# Modified on: 05/19/2020
 #------------------------------------
 
 # Import modules
@@ -25,11 +25,11 @@ socialService = workspace + "Social_Service_Locations_Final"
 publicTrans = workspace + "Streets_PublicTrans_HIN"
 hhIncome = workspace + "Block_Group_HH_Income_COA_Dissolve"
 popDensity = workspace + "Block_Group_Population_COA"
-streetSelect = workspace + "Street_Select_PHB"
+signalReqPhb = workspace + "Signal_Requests_PHB"
 streetlight = workspace + "AE_Streetlights"
 signal = workspace + "Signals"
 pedCrash = workspace + "Pedestrian_Crashes_SP"
-signalReqPhb = workspace + "Signal_Requests_PHB"
+
 
 # Working data variables
 nearLargeRetail = workspace + "Street_Near_Large_Retail"
@@ -45,14 +45,14 @@ nearLargeOfficeFreq = workspace + "Street_Near_Large_Office_Freq"
 nearMultifamily = workspace + "Street_Near_Multifamily"
 nearSocialService = workspace + "Street_Near_Social_Service"
 nearSocialServiceFreq = workspace + "Street_Near_Social_Service_Freq"
+nearSignalReqPhb = workspace + "Street_Near_Signal_Req_PHB"
+nearSignalReqPhbFreq = workspace + "Street_Near_Signal_Req_PHB_Freq"
 nearStreetlight = workspace + "Street_Near_Streetlight"
 nearSignal = workspace + "Street_Near_Signal"
 nearPedCrash2 = workspace + "Street_Near_Ped_Crash_200"
 nearPedCrash2Freq = workspace + "Street_Near_Ped_Crash_200_Freq"
 nearPedCrash4 = workspace + "Street_Near_Ped_Crash_400"
 nearPedCrash4Freq = workspace + "Street_Near_Ped_Crash_400_Freq"
-nearSignalReqPhb = workspace + "Street_Near_Signal_Req_PHB"
-nearSignalReqPhbFreq = workspace + "Street_Near_Signal_Req_PHB_Freq"
 
 # ***LARGE RETAIL***
 # Generate Near Table, Frequency, Add Index
@@ -115,6 +115,19 @@ print "\n", arcpy.GetMessages()
 arcpy.AddIndex_management(nearSocialServiceFreq, ["IN_FID"], "SocSerInd", "UNIQUE", "ASCENDING")
 print "\n", arcpy.GetMessages()
 
+# ***PHB REQUESTS - CSR***
+# Generate Near Table, Join Field to Signal_Requests_PHB to get additional fields, Add Index
+arcpy.GenerateNearTable_analysis(streetSelect, signalReqPhb, nearSignalReqPhb, "60 feet", "NO_LOCATION", "NO_ANGLE", "ALL", "", "PLANAR")
+print "\n", arcpy.GetMessages()
+arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "", "")
+print "\n", arcpy.GetMessages()
+arcpy.MakeFeatureLayer_management(signalReqPhb, "signalReqPhbLayer", "", "", "")
+print "\n", arcpy.GetMessages()
+arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_STATUS","REQUEST_DATE"])
+print "\n", arcpy.GetMessages()
+arcpy.AddIndex_management(nearSignalReqPhb, ["IN_FID"], "SignalReqPhbInd", "UNIQUE", "ASCENDING")
+print "\n", arcpy.GetMessages()
+
 # ***STREETLIGHTS***
 # Generate Near Table, Add Index
 arcpy.GenerateNearTable_analysis(streetSelect, streetlight, nearStreetlight, "60 feet", "NO_LOCATION", "NO_ANGLE", "CLOSEST", "", "PLANAR")
@@ -145,21 +158,6 @@ print "\n", arcpy.GetMessages()
 arcpy.Frequency_analysis(nearPedCrash4, nearPedCrash4Freq, "IN_FID", "")
 print "\n", arcpy.GetMessages()
 arcpy.AddIndex_management(nearPedCrash4Freq, ["IN_FID"], "PedCrash4Ind", "UNIQUE", "ASCENDING")
-print "\n", arcpy.GetMessages()
-
-# ***PHB REQUESTS - CSR***
-# Generate Near Table, Join Field to Signal_Requests_PHB to get additional fields, Add Index
-arcpy.GenerateNearTable_analysis(streetSelect, signalReqPhb, nearSignalReqPhb, "60 feet", "NO_LOCATION", "NO_ANGLE", "ALL", "", "PLANAR")
-print "\n", arcpy.GetMessages()
-arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "", "")
-print "\n", arcpy.GetMessages()
-arcpy.MakeFeatureLayer_management(signalReqPhb, "signalReqPhbLayer", "", "", "")
-print "\n", arcpy.GetMessages()
-arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_STATUS","REQUEST_DATE"])
-print "\n", arcpy.GetMessages()
-##arcpy.Frequency_analysis(nearSignalReqPhb, nearSignalReqPhbFreq, "IN_FID", "")
-##print "\n", arcpy.GetMessages()
-arcpy.AddIndex_management(nearSignalReqPhb, ["IN_FID"], "SignalReqPhbInd", "UNIQUE", "ASCENDING")
 print "\n", arcpy.GetMessages()
 
 print "\n" + "Completed at " + time.strftime("%Y/%m/%d %H.%M.%S", time.localtime())
