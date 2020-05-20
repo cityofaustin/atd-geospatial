@@ -2,7 +2,7 @@
 # Streets_for_PHBs_ASMP.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 05/19/2020
+# Modified on: 05/20/2020
 #------------------------------------
 
 # Import modules
@@ -16,6 +16,8 @@ arcpy.env.qualifiedFieldNames = False
 sdeConn = "Database Connections\\GISDM.sde\\"
 sdeStreet = sdeConn + "TRANSPORTATION.asmp_street_network"
 sdeJuris = sdeConn + "BOUNDARIES.jurisdictions"
+sdeCouncil = sdeConn + "BOUNDARIES.single_member_districts"
+sdeSigEng = sdeConn + "TRANSPORTATION.signal_engineer_areas"
 asmpPolys = "g:\\ATD\\ACTIVE TRANS\\Vision Zero\\GIS\\asmp_polygons\\asmp_polygons.gdb\\asmp_polygons"
 workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\"
 
@@ -171,6 +173,12 @@ print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "PED_CRASH_ALL", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 
+# Add Fields for additional data
+arcpy.AddField_management("streetSelectLayer", "COUNCIL_DISTRICT", "SHORT", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "SIGNAL_ENG_AREA", "TEXT", "", "", 20, "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+
 # Make Feature Layer for asmp_polygons layer
 arcpy.MakeFeatureLayer_management(asmpPolys, "asmpPolysLayer", "", "", "")
 print "\n", arcpy.GetMessages()
@@ -185,6 +193,121 @@ print "\n", arcpy.GetMessages()
 
 # Delete extra field that was created from Identity with asmp_polygons
 arcpy.DeleteField_management("streetSelectPhbLayer", ["FID_Street_Select_ASMP","PHB_STREET","FID_asmp_polygons"])
+print "\n", arcpy.GetMessages()
+
+# ***COUNCIL_DISTRICT***
+# Make Feature Layer, Select Layer by Attributes, Select Layer by Location, Calculate
+arcpy.MakeFeatureLayer_management(sdeCouncil, "sdeCouncilLayer", "", "", "")
+print "\n", arcpy.GetMessages()
+# Council District 1
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 1")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 1, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 2
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 2")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 2, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 3
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 3")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 3, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 4
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 4")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 4, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 5
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 5")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 5, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 6
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 6")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 6, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 7
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 7")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 7, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 8
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 8")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 8, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 9
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 9")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 9, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Council District 10
+arcpy.SelectLayerByAttribute_management("sdeCouncilLayer", "NEW_SELECTION", "COUNCIL_DISTRICT = 10")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeCouncilLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 10, "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+
+# ***SIGNAL_ENG_AREA***
+# Make Feature Layer, Select Layer by Attributes, Select Layer by Location, Calculate
+arcpy.MakeFeatureLayer_management(sdeSigEng, "sdeSigEngLayer", "", "", "")
+print "\n", arcpy.GetMessages()
+# Northwest Signal Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "NEW_SELECTION", "SIGNAL_ENG_AREA = 'NORTHWEST'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"NORTHWEST\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Northeast Signal Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "NEW_SELECTION", "SIGNAL_ENG_AREA = 'NORTHEAST'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"NORTHEAST\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Central Signal Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "NEW_SELECTION", "SIGNAL_ENG_AREA = 'CENTRAL'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"CENTRAL\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Southwest Signal Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "NEW_SELECTION", "SIGNAL_ENG_AREA = 'SOUTHWEST'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"SOUTHWEST\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Southeast Signal Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "NEW_SELECTION", "SIGNAL_ENG_AREA = 'SOUTHEAST'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"SOUTHEAST\"", "PYTHON_9.3", "")
 print "\n", arcpy.GetMessages()
 
 print "\n" + "Completed at " + time.strftime("%Y/%m/%d %H.%M.%S", time.localtime())
