@@ -2,7 +2,7 @@
 # PHB_Criteria_Ranking_ASMP.py
 # Processes all the data inputs to populate the ranking for all ASMP street segments in Street_for_PHBs layer
 # Created by: Jaime McKeown
-# Modified on: 05/08/2020
+# Modified on: 05/20/2020
 #------------------------------------
 
 # Import modules
@@ -29,11 +29,11 @@ nearSocialServiceFreq = workspace + "Street_Near_Social_Service_Freq"
 publicTransHin = workspace + "ASMP_Street_Public_Trans_HIN"
 hhIncome = workspace + "Block_Group_HH_Income_COA_Dissolve"
 popDensity = workspace + "Block_Group_Population_COA_Dissolve"
+nearSignalReqPhb = workspace + "Street_Near_Signal_Req_PHB"
 nearStreetlight = workspace + "Street_Near_Streetlight"
 nearSignal = workspace + "Street_Near_Signal"
 nearPedCrash2Freq = workspace + "Street_Near_Ped_Crash_200_Freq"
 nearPedCrash4Freq = workspace + "Street_Near_Ped_Crash_400_Freq"
-nearSignalReqPhb = workspace + "Street_Near_Signal_Req_PHB"
 
 # Make Feature Layer for Street_Select_PHB
 arcpy.MakeFeatureLayer_management(streetSelect, "streetSelectLayer", "", "", "")
@@ -263,8 +263,42 @@ print "\n", arcpy.GetMessages()
 arcpy.SelectLayerByAttribute_management("streetSelectLayer", "CLEAR_SELECTION", "")
 print "\n", arcpy.GetMessages()
 
+# ***CSR***
+# Make Table View, Add Join, Calculate, Remove Join
+arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddJoin_management("streetSelectLayer", "OBJECTID", "nearSignalReqPhbView", "IN_FID", "KEEP_ALL")
+print "\n", arcpy.GetMessages()
+
+# Codeblock to calculate CSR
+signalReqPhbCodeblock = """
+def CalcField(OID,FID):
+    if OID == FID:
+        return 3
+    else:
+        return 0"""
+
+# Codeblock to calculate REQUEST fields
+requestCodeblock = """
+def CalcField(OID,FID,Request):
+    if OID == FID:
+        return Request
+    else:
+        return None"""
+        
+arcpy.CalculateField_management("streetSelectLayer", "CSR", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!)", "PYTHON_9.3", signalReqPhbCodeblock)
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_STATUS!)", "PYTHON_9.3", requestCodeblock)
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_DATE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_DATE!)", "PYTHON_9.3", requestCodeblock)
+print "\n", arcpy.GetMessages()
+##arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Selelct_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
+##print "\n", arcpy.GetMessages()
+arcpy.RemoveJoin_management("streetSelectLayer", "")
+print "\n", arcpy.GetMessages()
+
 # Calculate TOTAL_DEMAND field
-arcpy.CalculateField_management("streetSelectLayer", "TOTAL_DEMAND", "!TOTAL_12MAX! + !PUBLIC_TRANS! + !HH_INCOME! + !POP_DENSITY!", "PYTHON_9.3", "")
+arcpy.CalculateField_management("streetSelectLayer", "TOTAL_DEMAND", "!TOTAL_12MAX! + !PUBLIC_TRANS! + !HH_INCOME! + !POP_DENSITY! + !CSR!", "PYTHON_9.3", "")
 print "\n", arcpy.GetMessages()
 
 # ***RISK CRITERIA***
@@ -471,42 +505,8 @@ print "\n", arcpy.GetMessages()
 arcpy.CalculateField_management("streetSelectLayer", "TOTAL_SAFETY", "!HIN_ALL! + !PED_CRASH_ALL!", "PYTHON_9.3", "")
 print "\n", arcpy.GetMessages()
 
-# ***CSR***
-# Make Table View, Add Join, Calculate, Remove Join
-arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "", "")
-print "\n", arcpy.GetMessages()
-arcpy.AddJoin_management("streetSelectLayer", "OBJECTID", "nearSignalReqPhbView", "IN_FID", "KEEP_ALL")
-print "\n", arcpy.GetMessages()
-
-# Codeblock to calculate CSR
-signalReqPhbCodeblock = """
-def CalcField(OID,FID):
-    if OID == FID:
-        return 3
-    else:
-        return 0"""
-
-# Codeblock to calculate REQUEST fields
-requestCodeblock = """
-def CalcField(OID,FID,Request):
-    if OID == FID:
-        return Request
-    else:
-        return None"""
-        
-arcpy.CalculateField_management("streetSelectLayer", "CSR", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!)", "PYTHON_9.3", signalReqPhbCodeblock)
-print "\n", arcpy.GetMessages()
-arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_STATUS!)", "PYTHON_9.3", requestCodeblock)
-print "\n", arcpy.GetMessages()
-arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_DATE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_DATE!)", "PYTHON_9.3", requestCodeblock)
-print "\n", arcpy.GetMessages()
-##arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Selelct_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
-##print "\n", arcpy.GetMessages()
-arcpy.RemoveJoin_management("streetSelectLayer", "")
-print "\n", arcpy.GetMessages()
-
 # Calculate TOTAL_RANK based on all criteria calculated above
-arcpy.CalculateField_management("streetSelectLayer", "TOTAL_RANK", "!TOTAL_DEMAND! + !TOTAL_RISK! + !TOTAL_SAFETY! + !CSR!", "PYTHON_9.3", "")
+arcpy.CalculateField_management("streetSelectLayer", "TOTAL_RANK", "!TOTAL_DEMAND! + !TOTAL_RISK! + !TOTAL_SAFETY!", "PYTHON_9.3", "")
 print "\n", arcpy.GetMessages()
 
 # Select out segments that are > 300' from Signals
