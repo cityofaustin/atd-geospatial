@@ -292,7 +292,7 @@ arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "Calc
 print "\n", arcpy.GetMessages()
 arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_DATE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_DATE!)", "PYTHON_9.3", requestCodeblock)
 print "\n", arcpy.GetMessages()
-arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Selelct_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
+arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
 print "\n", arcpy.GetMessages()
 arcpy.RemoveJoin_management("streetSelectLayer", "")
 print "\n", arcpy.GetMessages()

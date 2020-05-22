@@ -123,7 +123,7 @@ arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "",
 print "\n", arcpy.GetMessages()
 arcpy.MakeFeatureLayer_management(signalReqPhb, "signalReqPhbLayer", "", "", "")
 print "\n", arcpy.GetMessages()
-arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_STATUS","REQUEST_DATE"])
+arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_STATUS","REQUEST_DATE","REQUEST_SOURCE"])
 print "\n", arcpy.GetMessages()
 arcpy.AddIndex_management(nearSignalReqPhb, ["IN_FID"], "SignalReqPhbInd", "UNIQUE", "ASCENDING")
 print "\n", arcpy.GetMessages()
