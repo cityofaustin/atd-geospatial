@@ -2,7 +2,7 @@
 # PHB_Criteria_Ranking_ASMP.py
 # Processes all the data inputs to populate the ranking for all ASMP street segments in Street_for_PHBs layer
 # Created by: Jaime McKeown
-# Modified on: 05/20/2020
+# Modified on: 05/22/2020
 #------------------------------------
 
 # Import modules
@@ -292,8 +292,8 @@ arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "Calc
 print "\n", arcpy.GetMessages()
 arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_DATE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_DATE!)", "PYTHON_9.3", requestCodeblock)
 print "\n", arcpy.GetMessages()
-##arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Selelct_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
-##print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_SOURCE", "CalcField(!Street_Selelct_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_SOURCE!)", "PYTHON_9.3", requestCodeblock)
+print "\n", arcpy.GetMessages()
 arcpy.RemoveJoin_management("streetSelectLayer", "")
 print "\n", arcpy.GetMessages()
 
