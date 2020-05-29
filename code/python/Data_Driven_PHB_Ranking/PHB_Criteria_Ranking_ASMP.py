@@ -2,7 +2,7 @@
 # PHB_Criteria_Ranking_ASMP.py
 # Processes all the data inputs to populate the ranking for all ASMP street segments in Street_for_PHBs layer
 # Created by: Jaime McKeown
-# Modified on: 05/22/2020
+# Modified on: 05/29/2020
 #------------------------------------
 
 # Import modules
@@ -272,9 +272,11 @@ print "\n", arcpy.GetMessages()
 
 # Codeblock to calculate CSR
 signalReqPhbCodeblock = """
-def CalcField(OID,FID):
-    if OID == FID:
+def CalcField(OID,FID,Status):
+    if OID == FID and Status <> 'RECOMMENDED':
         return 3
+    elif OID == FID and Status == 'RECOMMENDED':
+        return -1
     else:
         return 0"""
 
@@ -286,7 +288,9 @@ def CalcField(OID,FID,Request):
     else:
         return None"""
         
-arcpy.CalculateField_management("streetSelectLayer", "CSR", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!)", "PYTHON_9.3", signalReqPhbCodeblock)
+arcpy.CalculateField_management("streetSelectLayer", "CSR", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_STATUS!)", "PYTHON_9.3", signalReqPhbCodeblock)
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_TYPE", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_TYPE!)", "PYTHON_9.3", requestCodeblock)
 print "\n", arcpy.GetMessages()
 arcpy.CalculateField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "CalcField(!Street_Select_PHB.OBJECTID!,!Street_Near_Signal_Req_PHB.IN_FID!,!Street_Near_Signal_Req_PHB.REQUEST_STATUS!)", "PYTHON_9.3", requestCodeblock)
 print "\n", arcpy.GetMessages()
@@ -506,11 +510,17 @@ arcpy.CalculateField_management("streetSelectLayer", "TOTAL_SAFETY", "!HIN_ALL! 
 print "\n", arcpy.GetMessages()
 
 # Calculate TOTAL_RANK based on all criteria calculated above
-arcpy.CalculateField_management("streetSelectLayer", "TOTAL_RANK", "!TOTAL_DEMAND! + !TOTAL_RISK! + !TOTAL_SAFETY!", "PYTHON_9.3", "")
+arcpy.CalculateField_management("streetSelectLayer", "TOTAL_SCORE", "!TOTAL_DEMAND! + !TOTAL_RISK! + !TOTAL_SAFETY!", "PYTHON_9.3", "")
 print "\n", arcpy.GetMessages()
 
-# Select out segments that are > 300' from Signals
-arcpy.Select_analysis("streetSelectLayer", streetSelectFinal, "SIGNAL >= 0")
+# Select segments that are not Recommended PHBs / Signals, then select segments that are > 300' from an active Signal
+arcpy.SelectLayerByAttribute_management("streetSelectLayer", "NEW_SELECTION", "CSR >= 0")
+print "\n", arcpy.GetMessages
+arcpy.SelectLayerByAttribute_management("streetSelectLayer", "SUBSET_SELECTION", "SIGNAL >= 2")
+print "\n", arcpy.GetMessages()
+
+# Select to create Street_Select_PHB_Final from above selections
+arcpy.Select_analysis("streetSelectLayer", streetSelectFinal, "")
 print "\n", arcpy.GetMessages()
 
 print "\n" + "Completed at " + time.strftime("%Y/%m/%d %H.%M.%S", time.localtime())

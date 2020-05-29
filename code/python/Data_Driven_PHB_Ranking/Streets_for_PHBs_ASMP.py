@@ -2,7 +2,7 @@
 # Streets_for_PHBs_ASMP.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 05/20/2020
+# Modified on: 05/29/2020
 #------------------------------------
 
 # Import modules
@@ -97,7 +97,7 @@ arcpy.MakeFeatureLayer_management(streetSelect, "streetSelectLayer", "", "", "")
 print "\n", arcpy.GetMessages()
 
 # Add Fields for Total Ranking Scores on Street_Select_PHB
-arcpy.AddField_management("streetSelectLayer", "TOTAL_RANK", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
+arcpy.AddField_management("streetSelectLayer", "TOTAL_SCORE", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "TOTAL_DEMAND", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
@@ -132,6 +132,8 @@ print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "CSR", "LONG", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_DATE", "DATE", "", "", "", "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_TYPE", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "CSR_REQUEST_STATUS", "TEXT", "", "", 50, "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()

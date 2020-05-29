@@ -2,7 +2,7 @@
 # Demand_Risk_Safety_for_PHBs_ASMP.py
 # Runs analysis on input Demand, Risk, and Safety Data for use in Streets_for_PHBs Script processing
 # Created by: Jaime McKeown
-# Modified on: 05/19/2020
+# Modified on: 05/29/2020
 #------------------------------------
 
 # Import modules
@@ -123,7 +123,7 @@ arcpy.MakeTableView_management(nearSignalReqPhb, "nearSignalReqPhbView", "", "",
 print "\n", arcpy.GetMessages()
 arcpy.MakeFeatureLayer_management(signalReqPhb, "signalReqPhbLayer", "", "", "")
 print "\n", arcpy.GetMessages()
-arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_STATUS","REQUEST_DATE","REQUEST_SOURCE"])
+arcpy.JoinField_management("nearSignalReqPhbView", "NEAR_FID", "signalReqPhbLayer", "OBJECTID", ["REQUEST_TYPE","REQUEST_STATUS","REQUEST_DATE","REQUEST_SOURCE"])
 print "\n", arcpy.GetMessages()
 arcpy.AddIndex_management(nearSignalReqPhb, ["IN_FID"], "SignalReqPhbInd", "UNIQUE", "ASCENDING")
 print "\n", arcpy.GetMessages()
