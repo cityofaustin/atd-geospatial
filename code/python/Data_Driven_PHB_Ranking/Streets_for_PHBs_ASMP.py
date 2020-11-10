@@ -2,7 +2,7 @@
 # Streets_for_PHBs_ASMP.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 05/29/2020
+# Modified on: 11/10/2020
 #------------------------------------
 
 # Import modules
@@ -19,14 +19,14 @@ sdeJuris = sdeConn + "BOUNDARIES.jurisdictions"
 sdeCouncil = sdeConn + "BOUNDARIES.single_member_districts"
 sdeSigEng = sdeConn + "TRANSPORTATION.signal_engineer_areas"
 asmpPolys = "g:\\ATD\\ACTIVE TRANS\\Vision Zero\\GIS\\asmp_polygons\\asmp_polygons.gdb\\asmp_polygons"
-workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\"
+workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 
 # Set environment to scratch workspace and FGDB
 if arcpy.Exists(workspace):
     arcpy.env.scratchWorkspace = workspace
     newDataGdb = arcpy.env.scratchGDB + "\\"
 else:
-    arcpy.CreateFolder_management("g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\", "Data")
+    arcpy.CreateFolder_management("g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\", "Data")
     arcpy.env.scratchWorkspace = workspace
     newDataGdb = arcpy.env.scratchGDB + "\\"
 

@@ -3,7 +3,7 @@
 # Creates new Churches, Schools, and Multifamily layers based land_use_inventory, tcad_property and wcad_owner tables
 # Additionally creates dissolved Parks layer
 # Created by: Jaime McKeown
-# Modified on: 05/08/2020
+# Modified on: 11/10/2020
 #------------------------------------
 
 # Import modules
@@ -18,14 +18,14 @@ sdeLanduse = "Database Connections\\GISDM.sde\\PLANNINGCADASTRE.land_use_invento
 sdeParks = "Database Connections\\GISDM.sde\\BOUNDARIES.city_of_austin_parks"
 sdeTcad = "Database Connections\\GISDM_External.sde\\EXTERNAL.tcad_property"
 sdeWcad = "Database Connections\\GISDM_External.sde\\EXTERNAL.wcad_owner"
-workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\"
+workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 
 # Set environment to scratch workspace and FGDB
 if arcpy.Exists(workspace):
     arcpy.env.scratchWorkspace = workspace
     newDataGdb = arcpy.env.scratchGDB + "\\"
 else:
-    arcpy.CreateFolder_management("g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\", "Data")
+    arcpy.CreateFolder_management("g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\", "Data")
     arcpy.env.scratchWorkspace = workspace
     newDataGdb = arcpy.env.scratchGDB + "\\"
 

@@ -2,7 +2,7 @@
 # Data_to_PHB_Data.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 05/11/2020
+# Modified on: 11/10/2020
 #------------------------------------
 
 # Import modules
@@ -13,7 +13,7 @@ arcpy.env.overwriteOutput = True
 arcpy.env.qualifiedFieldNames = False
 
 # Set variables for the environment and input data layers
-workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\"
+workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 scratchGdb = workspace + "scratch.gdb\\"
 dataCollGdb = workspace + "Data_Collection.gdb\\"
 phbDataGdb = workspace + "PHB_Data.gdb\\"

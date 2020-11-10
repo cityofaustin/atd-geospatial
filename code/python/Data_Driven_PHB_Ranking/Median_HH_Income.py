@@ -12,7 +12,7 @@ import arcpy
 arcpy.env.overwriteOutput = True
 
 # Set variables for the environment and working data
-workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\"
+workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 dataCollGdb = workspace + "Data_Collection.gdb\\"
 hhIncome = dataCollGdb + "Block_Group_HH_Income"
 

@@ -2,7 +2,7 @@
 # PHB_Criteria_Ranking_ASMP.py
 # Processes all the data inputs to populate the ranking for all ASMP street segments in Street_for_PHBs layer
 # Created by: Jaime McKeown
-# Modified on: 05/29/2020
+# Modified on: 11/10/2020
 #------------------------------------
 
 # Import modules
@@ -13,7 +13,7 @@ arcpy.env.overwriteOutput = True
 arcpy.env.qualifiedFieldNames = True
 
 # Set variables for the environment and input data layers
-workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\Data\\PHB_Data.gdb\\"
+workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\PHB_Data.gdb\\"
 
 # Working data variables
 streetSelect = workspace + "Street_Select_PHB"
