@@ -63,7 +63,7 @@ print "\n", arcpy.GetMessages()
 # Added Street Level 1 to the Streets Layer per Renee on 11/10/2020
 streetCodeblock = """
 def CalcField(StreetName, StreetLevel):
-    if treetLevel == 5:
+    if StreetLevel == 5:
         return 'No'
     elif 'SVRD' in StreetName:
         return 'No'
