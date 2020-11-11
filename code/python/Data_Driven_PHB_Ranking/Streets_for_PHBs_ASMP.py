@@ -60,11 +60,10 @@ arcpy.AddField_management("streetClipLayer", "PHB_STREET", "TEXT", "", "", 10, "
 print "\n", arcpy.GetMessages()
 
 # Codeblock for PHB_STREET field from Street_Clip_COA
+# Added Street Level 1 to the Streets Layer per Renee on 11/10/2020
 streetCodeblock = """
 def CalcField(StreetName, StreetLevel):
-    if StreetLevel == 1:
-        return 'No'
-    elif StreetLevel == 5:
+    if treetLevel == 5:
         return 'No'
     elif 'SVRD' in StreetName:
         return 'No'
@@ -74,6 +73,8 @@ def CalcField(StreetName, StreetLevel):
         return 'No'
     elif 'SH 45' in StreetName:
         return 'No'
+    elif StreetLevel == 1:
+        return 'Yes'
     elif StreetLevel == 2:
         return 'Yes'
     elif StreetLevel == 3:
