@@ -18,6 +18,7 @@ sdeStreet = sdeConn + "TRANSPORTATION.asmp_street_network"
 sdeJuris = sdeConn + "BOUNDARIES.jurisdictions"
 sdeCouncil = sdeConn + "BOUNDARIES.single_member_districts"
 sdeSigEng = sdeConn + "TRANSPORTATION.signal_engineer_areas"
+sdeTransEng = sdeConn + "TRANSPORTATION.engineering_service_areas"
 asmpPolys = "g:\\ATD\\ACTIVE TRANS\\Vision Zero\\GIS\\asmp_polygons\\asmp_polygons.gdb\\asmp_polygons"
 workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 
@@ -181,6 +182,8 @@ arcpy.AddField_management("streetSelectLayer", "COUNCIL_DISTRICT", "SHORT", "", 
 print "\n", arcpy.GetMessages()
 arcpy.AddField_management("streetSelectLayer", "SIGNAL_ENG_AREA", "TEXT", "", "", 20, "", "NULLABLE", "NON_REQUIRED", "")
 print "\n", arcpy.GetMessages()
+arcpy.AddField_management("streetSelectLayer", "TRANS_ENG_AREA", "TEXT", "", "", 20, "", "NULLABLE", "NON_REQUIRED", "")
+print "\n", arcpy.GetMessages()
 
 # Make Feature Layer for asmp_polygons layer
 arcpy.MakeFeatureLayer_management(asmpPolys, "asmpPolysLayer", "", "", "")
@@ -274,7 +277,7 @@ arcpy.CalculateField_management("streetSelectPhbLayer", "COUNCIL_DISTRICT", 10, 
 print "\n", arcpy.GetMessages()
 
 # ***SIGNAL_ENG_AREA***
-# Make Feature Layer, Select Layer by Attributes, Select Layer by Location, Calculate
+# Make Feature Layer, Select Layer by Attributes, Select Layer by Location, Calculate, Clear Selections
 arcpy.MakeFeatureLayer_management(sdeSigEng, "sdeSigEngLayer", "", "", "")
 print "\n", arcpy.GetMessages()
 # Northwest Signal Engineer Area
@@ -311,6 +314,40 @@ print "\n", arcpy.GetMessages()
 arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeSigEngLayer", "", "NEW_SELECTION", "")
 print "\n", arcpy.GetMessages()
 arcpy.CalculateField_management("streetSelectPhbLayer", "SIGNAL_ENG_AREA", "\"SOUTHEAST\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByAttribute_management("sdeSigEngLayer", "CLEAR_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByAttribute_management("streetSelectPhbLayer", "CLEAR_SELECTION", "")
+print "\n", arcpy.GetMessages()
+
+# ***TRANS_ENG_AREA***
+# Make Feature Layer, Select Layer by Attributes, Select Layer by Location, Calculate, Clear Selections
+arcpy.MakeFeatureLayer_management(sdeTransEng, "sdeTransEngLayer", "", "", "")
+print "\n", arcpy.GetMessages()
+# North Transportation Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeTransEngLayer", "NEW_SELECTION", "ATD_ENGINEER_AREAS = 'NORTH'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeTransEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "TRANS_ENG_AREA", "\"NORTH\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# Central Transportation Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeTransEngLayer", "NEW_SELECTION", "ATD_ENGINEER_AREAS = 'CENTRAL'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeTransEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "TRANS_ENG_AREA", "\"CENTRAL\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+# South Transportation Engineer Area
+arcpy.SelectLayerByAttribute_management("sdeTransEngLayer", "NEW_SELECTION", "ATD_ENGINEER_AREAS = 'SOUTH'")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByLocation_management("streetSelectPhbLayer", "HAVE_THEIR_CENTER_IN", "sdeTransEngLayer", "", "NEW_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.CalculateField_management("streetSelectPhbLayer", "TRANS_ENG_AREA", "\"SOUTH\"", "PYTHON_9.3", "")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByAttribute_management("sdeTransEngLayer", "CLEAR_SELECTION", "")
+print "\n", arcpy.GetMessages()
+arcpy.SelectLayerByAttribute_management("streetSelectPhbLayer", "CLEAR_SELECTION", "")
 print "\n", arcpy.GetMessages()
 
 print "\n" + "Completed at " + time.strftime("%Y/%m/%d %H.%M.%S", time.localtime())
