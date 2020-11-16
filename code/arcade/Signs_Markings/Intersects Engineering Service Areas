@@ -1,17 +1,6 @@
 var EngServAreaInt = Intersects(FeatureSetByName($datastore, "ATD_ADMIN.engineering_service_areas", ["ATD_ENGINEER_AREAS"]), $feature);
 for (var fc in EngServAreaInt) {
-   if (fc.ATD_ENGINEER_AREAS == 'CENTRAL') {
-   return 'CENTRAL'
-   }
-   else if (fc.ATD_ENGINEER_AREAS == 'NORTH') {
-   return 'NORTH'
-   }
-   else if (fc.ATD_ENGINEER_AREAS == 'SOUTH') {
-   return 'SOUTH'
-   }
-   else {
-   return ''
-   }
+   return fc.ATD_ENGINEER_AREAS
 }
 if (Count(EngServAreaInt) == 0) {
 return ''
