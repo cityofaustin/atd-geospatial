@@ -1,0 +1,12 @@
+if ($feature.SPECIALTY_POINT_SUB_TYPE == 1) {
+return 'Y'
+}
+else if ($feature.SPECIALTY_POINT_SUB_TYPE == 3) {
+return 'Y'
+}
+else if ($feature.SPECIALTY_POINT_SUB_TYPE == 5) {
+return 'Y'
+}
+else {
+return 'N'
+}
