@@ -1,0 +1,7 @@
+var JurisInt = Intersects(FeatureSetByName($datastore, "BASE_ADMIN.jurisdictions", ["JURISDICTION_TYPE_SPECIFICS"]), $feature);
+for (var fc in JurisInt) {
+   return fc.JURISDICTION_TYPE_SPECIFICS
+}
+if (Count(JurisInt) == 0) {
+return ''
+}
