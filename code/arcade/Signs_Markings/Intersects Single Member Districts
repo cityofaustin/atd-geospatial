@@ -1,0 +1,7 @@
+var CounDistInt = Intersects(FeatureSetByName($datastore, "BASE_ADMIN.single_member_districts", ["COUNCIL_DISTRICT"]), $feature);
+for (var fc in CounDistInt) {
+   return fc.COUNCIL_DISTRICT
+}
+if (Count(CounDistInt) == 0) {
+return ''
+}
