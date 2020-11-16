@@ -1,0 +1,24 @@
+if ($feature.PARKING_TYPE == 'Commercial Service Zone') {
+return '30 min'
+}
+else if ($feature.PARKING_TYPE == 'Customer Service Zone') {
+return '15 min'
+}
+else if ($feature.PARKING_TYPE == 'Passenger Loading Zone') {
+return '5 min'
+}
+else if ($feature.PARKING_TYPE == 'Bicycle Parking Zone') {
+return 'All Day'
+}
+else if ($feature.PARKING_TYPE == 'Bus Stop') {
+return 'All Day'
+}
+else if ($feature.PARKING_TYPE == 'Marked ADA Zone') {
+return 'All Day'
+}
+else if ($feature.PARKING_TYPE == 'Car2Go Parking') {
+return 'All Day'
+}
+else {
+return $feature.TIME_LIMIT
+}
