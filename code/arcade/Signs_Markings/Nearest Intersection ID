@@ -1,0 +1,4 @@
+var intersectLayer = Intersects(FeatureSetByName($datastore, "ATD_ADMIN.COA_Intersection_Points_TP"), $feature);
+for (var fc in intersectLayer) {
+   return fc.INTERSECTION_ID
+}
