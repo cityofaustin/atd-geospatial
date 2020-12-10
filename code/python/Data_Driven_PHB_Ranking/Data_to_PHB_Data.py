@@ -2,7 +2,7 @@
 # Data_to_PHB_Data.py
 # Creates new ASMP Street Network layer based on specific Street Levels and clips to City of Austin Full Purpose
 # Created by: Jaime McKeown
-# Modified on: 11/10/2020
+# Modified on: 12/10/2020
 #------------------------------------
 
 # Import modules
@@ -42,10 +42,6 @@ arcpy.MakeFeatureLayer_management(scratchGdb + "Parks_Dissolve", "Park_Layer", "
 print "\n", arcpy.GetMessages()
 arcpy.CopyFeatures_management("Park_Layer", phbDataGdb + "Parks_Dissolve", "", "", "", "")
 print "\n", arcpy.GetMessages()
-arcpy.MakeFeatureLayer_management(scratchGdb + "Schools_Dissolve", "School_Layer", "", "", "")
-print "\n", arcpy.GetMessages()
-arcpy.CopyFeatures_management("School_Layer", phbDataGdb + "Schools_Dissolve", "", "", "", "")
-print "\n", arcpy.GetMessages()
 arcpy.MakeFeatureLayer_management(scratchGdb + "Street_Select_PHB", "Street_Layer", "", "", "")
 print "\n", arcpy.GetMessages()
 arcpy.CopyFeatures_management("Street_Layer", phbDataGdb + "Street_Select_PHB", "", "", "", "")
@@ -75,6 +71,10 @@ print "\n", arcpy.GetMessages()
 arcpy.MakeFeatureLayer_management(dataCollGdb + "Large_Retail_Locations_Final", "Retail_Layer", "", "", "")
 print "\n", arcpy.GetMessages()
 arcpy.CopyFeatures_management("Retail_Layer", phbDataGdb + "Large_Retail_Locations_Final", "", "", "", "")
+print "\n", arcpy.GetMessages()
+arcpy.MakeFeatureLayer_management(dataCollGdb + "Schools", "Schools_Layer", "", "", "")
+print "\n", arcpy.GetMessages()
+arcpy.CopyFeatures_management("Schools_Layer", phbDataGdb + "Schools", "", "", "", "")
 print "\n", arcpy.GetMessages()
 arcpy.MakeFeatureLayer_management(dataCollGdb + "Pedestrian_Crashes_SP", "Ped_Crash_Layer", "", "", "")
 print "\n", arcpy.GetMessages()

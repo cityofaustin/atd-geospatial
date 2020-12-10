@@ -2,7 +2,7 @@
 # Demand_Risk_Safety_for_PHBs_ASMP.py
 # Runs analysis on input Demand, Risk, and Safety Data for use in Streets_for_PHBs Script processing
 # Created by: Jaime McKeown
-# Modified on: 11/10/2020
+# Modified on: 12/10/2020
 #------------------------------------
 
 # Import modules
@@ -16,7 +16,7 @@ arcpy.env.qualifiedFieldNames = False
 workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\PHB_Data.gdb\\"
 streetSelect = workspace + "Street_Select_PHB"
 largeRetail = workspace + "Large_Retail_Locations_Final"
-school = workspace + "Schools_Dissolve"
+school = workspace + "Schools"
 church = workspace + "Churches_Dissolve"
 park = workspace + "Parks_Dissolve"
 largeOffice = workspace + "Austin_Major_Employers_Mapping_500"
