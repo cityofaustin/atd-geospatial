@@ -1,0 +1,18 @@
+if ($feature.HOURS_OF_OPERATION == '24 Hours Mon-Sun') {
+return 24 }
+else if ($feature.HOURS_OF_OPERATION == '7AM-7PM Mon-Sat') {
+return 12 }
+else if ($feature.HOURS_OF_OPERATION == '7PM-Midnight Wed-Sat') {
+return 0 }
+else if ($feature.HOURS_OF_OPERATION == '8AM-6PM Mon-Tue, 8AM-Midnight Wed-Fri, 11AM-Midnight Sat') {
+return 10 }
+else if ($feature.HOURS_OF_OPERATION == '8AM-Midnight Mon-Sat') {
+return 16 }
+else if ($feature.HOURS_OF_OPERATION == '8AM-5PM Mon-Fri') {
+return 9 }
+else if ($feature.HOURS_OF_OPERATION == '8AM-6PM Mon-Fri') {
+return 10 }
+else if ($feature.HOURS_OF_OPERATION == '8AM-6PM Mon-Sat') {
+return 10 }
+else {
+return $feature.TUESDAY_HOURS }

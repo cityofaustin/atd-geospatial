@@ -1,0 +1,6 @@
+if ($feature.SPECIALTY_POINT_SUB_TYPE == 14) {
+return 'Y'
+}
+else {
+return 'N'
+}

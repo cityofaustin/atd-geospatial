@@ -1,0 +1,15 @@
+// Get closest feature - populates SEGMENT_ID field based on closest attribute
+
+var searchDist = 1000;
+var streets = Intersects(FeatureSetByName($datastore, "ATD_ADMIN.atd_maintained_streets", ['SEGMENT_ID'], true), Buffer($feature, searchDist, "feet"));
+var cnt = Count(streets)
+var nearestStreet;
+var minDist = 250;
+for (var f in streets) {
+    var streetDist = Round(Distance(f, $feature, "feet"), 2);
+    if (streetDist < minDist) {
+       nearestStreet = f.SEGMENT_ID;
+       minDist = streetDist;
+    }
+}
+return nearestStreet;

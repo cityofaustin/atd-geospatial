@@ -1,0 +1,15 @@
+if ($feature.CBD == 'Y') {
+return 'CBD'
+}
+else if ($feature.SIGNAL_INTERSECTION == 'Y') {
+return 'SIGNAL'
+}
+else if ($feature.SCHOOL == 'Y') {
+return 'SCHOOL'
+}
+else if ($feature.OTHER_AREA == 'Y') {
+return 'OTHER'
+}
+else {
+return $feature.CREW_ASSIGNED
+}

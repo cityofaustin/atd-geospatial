@@ -1,0 +1,8 @@
+if ($feature.SPECIALTY_LINE_TYPE == 'DELINEATORS') {
+return 'Y'
+}
+else if ($feature.SPECIALTY_LINE_TYPE == 'CONCRETE_DOMES') {
+return 'Y'
+}
+else {
+return 'N' }

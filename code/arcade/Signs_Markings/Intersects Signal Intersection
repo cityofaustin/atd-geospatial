@@ -1,0 +1,9 @@
+var fcSignalBuffer = FeatureSetByName($datastore, "ATD_ADMIN.Signals_Turned_On_100ft_Buffer", ["OBJECTID"]);
+var fcSignalBufferInt = Intersects(fcSignalBuffer, $feature);
+var SignalBuffer = First(fcSignalBufferInt);
+
+if (SignalBuffer == null) {
+return "N"
+}
+else
+return "Y";

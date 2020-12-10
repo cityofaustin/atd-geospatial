@@ -1,0 +1,12 @@
+var DapczInt = Intersects(FeatureSetByName($datastore, "ATD_ADMIN.dapcz", ["DAPCZ_SECTOR"]), $feature);
+for (var fc in DapczInt) {
+   if (fc.DAPCZ_SECTOR == 'Central') {
+   return 'Y'
+   }
+   else {
+   return 'N'
+   }
+}
+if (Count(DapczInt) == 0) {
+return 'N'
+}

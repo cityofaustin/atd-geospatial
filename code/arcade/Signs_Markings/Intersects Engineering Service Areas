@@ -1,0 +1,7 @@
+var EngServAreaInt = Intersects(FeatureSetByName($datastore, "ATD_ADMIN.engineering_service_areas", ["ATD_ENGINEER_AREAS"]), $feature);
+for (var fc in EngServAreaInt) {
+   return fc.ATD_ENGINEER_AREAS
+}
+if (Count(EngServAreaInt) == 0) {
+return ''
+}

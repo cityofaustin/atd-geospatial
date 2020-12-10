@@ -1,0 +1,3 @@
+if ($feature.SPECIALTY_POINT_TYPE == 6) {
+return 'N'
+}

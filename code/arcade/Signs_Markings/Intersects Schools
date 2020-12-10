@@ -1,0 +1,9 @@
+var fcSchoolBuffer = FeatureSetByName($datastore, "ATD_ADMIN.Schools_1_4_Mile_Buffer", ["OBJECTID"]);
+var fcSchoolBufferInt = Intersects(fcSchoolBuffer, $feature);
+var SchoolBuffer = First(fcSchoolBufferInt);
+
+if (SchoolBuffer == null) {
+return "N"
+}
+else
+return "Y"

@@ -1,0 +1,9 @@
+if ($feature.SPECIALTY_POINT_SUB_TYPE == 1) {
+return 'Y'
+}
+else if ($feature.SPECIALTY_POINT_SUB_TYPE == 2) {
+return 'Y'
+}
+else {
+return 'N'
+}
