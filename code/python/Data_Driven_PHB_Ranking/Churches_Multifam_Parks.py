@@ -51,93 +51,105 @@ print "\n", arcpy.GetMessages()
 # Codeblock for CHURCH_NAME_TCAD from tcad_parcels
 tcadChurchCodeblock = """
 def CalcField(Tchurch, Owner):
-    if 'CHURCH' in Owner:
-        return Owner
-    elif 'CONGREGATION' in Owner:
-        return Owner
-    elif 'PRESBYTERIAN' in Owner:
-        return Owner
-    elif 'GOD' in Owner:
-        return Owner
-    elif 'LUTHERAN' in Owner:
-        return Owner
-    elif 'FELLOWSHIP' in Owner:
-        return Owner
-    elif 'SHEPHERD' in Owner:
-        return Owner
-    elif 'CATHOLIC' in Owner:
+    if 'APOSTOLIC' in Owner:
         return Owner
     elif 'BAPTIST' in Owner:
         return Owner
-    elif 'APOSTOLIC' in Owner:
-        return Owner
-    elif 'TEMPLE' in Owner:
-        return Owner
-    elif 'IGLESIA' in Owner:
-        return Owner
-    elif 'ORTHODOX' in Owner:
-        return Owner
-    elif 'ISLAMIC' in Owner:
-        return Owner
-    elif 'ZEN CENTER' in Owner:
-        return Owner
-    elif 'VOX VENIAE' in Owner:
-        return Owner
-    elif 'PENTCOSTES' in Owner:
-        return Owner
-    elif 'MISSIONARY' in Owner:
-        return Owner
-    elif 'BUDDHIST' in Owner:
-        return Owner
-    elif 'FAITH' in Owner:
-        return Owner
-    elif 'MEHODIST' in Owner:
-        return Owner
-    elif 'PENTECOSTAL' in Owner:
-        return Owner
-    elif 'SAINTS' in Owner:
-        return Owner
-    elif 'DHARMADHATU' in Owner:
-        return Owner
-    elif 'ST JOHNS COLLEGE HEIGHTS' in Owner:
-        return Owner
-    elif 'FRANCISCAN' in Owner:
-        return Owner
-    elif 'TARRYTOWN UNITED' in Owner:
-        return Owner
-    elif 'EPISCOPAL' in Owner:
-        return Owner
-    elif 'MISION' in Owner:
-        return Owner
-    elif 'VICTORY OUTREACH' in Owner:
-        return Owner
-    elif 'LA LUZ DEL MUNDO' in Owner:
-        return Owner
-    elif 'JEWISH' in Owner:
-        return Owner
-    elif 'EVANGELICAL' in Owner:
-        return Owner
-    elif 'CHRISTIAN' in Owner:
-        return Owner
-    elif 'CATHEDRAL' in Owner:
-        return Owner
-    elif 'TEMPLO' in Owner:
-        return Owner
-    elif 'MISSION' in Owner:
+    elif 'BIBLE' in Owner:
         return Owner
     elif 'BNAI BRITH HILLEL' in Owner:
         return Owner
-    elif 'MOUNT CALVARY PRIMITIVE' in Owner:
+    elif 'BUDDHIST' in Owner:
         return Owner
-    elif 'DIOS' in Owner:
+    elif 'CATHEDRAL' in Owner:
         return Owner
-    elif 'LIFE FAMILY INC' in Owner:
-        return Owner
-    elif 'SEVENTH DAY ADVENTISTS' in Owner:
+    elif 'CATHOLIC' in Owner:
         return Owner
     elif 'CHAPEL' in Owner:
         return Owner
+    elif 'CHRIST' in Owner:
+        return Owner
+    elif 'CHRISTIAN' in Owner:
+        return Owner
+    elif 'CHURCH' in Owner:
+        return Owner
+    elif 'CHURCHES' in Owner:
+        return Owner
+    elif 'CONGREGATION' in Owner:
+        return Owner
+    elif 'DHARMADHATU' in Owner:
+        return Owner
+    elif 'DIOS' in Owner:
+        return Owner
+    elif 'EPISCOPAL' in Owner:
+        return Owner
+    elif 'EVANGELICAL' in Owner:
+        return Owner
+    elif 'FAITH' in Owner:
+        return Owner
+    elif 'FELLOWSHIP' in Owner:
+        return Owner
+    elif 'FRANCISCAN' in Owner:
+        return Owner
+    elif 'GOD' in Owner:
+        return Owner
+    elif 'IGLESIA' in Owner:
+        return Owner
+    elif 'ISLAMIC' in Owner:
+        return Owner
+    elif 'JEWISH' in Owner:
+        return Owner
+    elif 'LA LUZ DEL MUNDO' in Owner:
+        return Owner
+    elif 'LIFE FAMILY INC' in Owner:
+        return Owner
+    elif 'LUTHERAN' in Owner:
+        return Owner
+    elif 'METHODIST' in Owner:
+        return Owner
+    elif 'MISION' in Owner:
+        return Owner
+    elif 'MISSION' in Owner:
+        return Owner
+    elif 'MISSIONARY' in Owner:
+        return Owner
     elif 'MOSQUE' in Owner:
+        return Owner
+    elif 'MOUNT CALVARY PRIMITIVE' in Owner:
+        return Owner
+    elif 'ORTHODOX' in Owner:
+        return Owner
+    elif 'PENTECOSTAL' in Owner:
+        return Owner
+    elif 'PENTECOSTE' in Owner:
+        return Owner
+    elif 'PRESBYTERIAN' in Owner:
+        return Owner
+    elif 'PROTESTANT' in Owner:
+        return Owner
+    elif 'SAINTS' in Owner:
+        return Owner
+    elif 'SEVENTH DAY ADVENTISTS' in Owner:
+        return Owner
+    elif 'SHEPHERD' in Owner:
+        return Owner
+    elif 'ST JOHNS COLLEGE HEIGHTS' in Owner:
+        return Owner
+    elif 'TARRYTOWN UNITED' in Owner:
+        return Owner
+    elif 'TEMPLE' in Owner:
+        return Owner
+    elif 'TEMPLO' in Owner:
+        return Owner
+    elif 'TEXAS TRANSPORT COMMISSION' in Owner:
+        return Owner
+    elif 'VICTORY OUTREACH' in Owner:
+        return Owner
+    elif 'VOX VENIAE' in Owner:
+        return Owner
+    elif 'WOODROW STUDIOS LLC' in Owner:
+        return Owner
+    elif 'ZEN CENTER' in Owner:
         return Owner
     else:
         return Tchurch"""
