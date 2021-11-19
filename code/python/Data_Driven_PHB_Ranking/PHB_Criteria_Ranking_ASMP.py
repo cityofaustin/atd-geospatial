@@ -181,10 +181,10 @@ arcpy.RemoveJoin_management("streetSelectLayer", "")
 print("\n" + arcpy.GetMessages())
 
 # ***HH_INCOME***
-# Field was calculated to 0 in first script (accounts for 60k and more and no data)
-# 50k to 60k
-print("\n" + "HH Income 50k to 60k: Make Feature Layer, Select Layer by Location, Calculate, Clear Selection")
-arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '50k to 60k'", "", "")
+# Field was calculated to 0 in first script (accounts for > median income and N/A (no data))
+# 0% - 25% below
+print("\n" + "HH Income 0% - 25% below: Make Feature Layer, Select Layer by Location, Calculate, Clear Selection")
+arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '0% - 25% below'", "", "")
 print("\n" + arcpy.GetMessages())
 arcpy.SelectLayerByLocation_management("streetSelectLayer", "INTERSECT", "hhIncomeLayer", "", "NEW_SELECTION", "")
 print("\n" + arcpy.GetMessages())
@@ -193,9 +193,9 @@ print("\n" + arcpy.GetMessages())
 arcpy.SelectLayerByAttribute_management("streetSelectLayer", "CLEAR_SELECTION", "")
 print("\n" + arcpy.GetMessages())
 
-# 40k to 50k
-print("\n" + "HH Income 40k to 50k: Make Feature Layer, Select Layer by Loction, Calculate, Clear Selection")
-arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '40k to 50k'", "", "")
+# 25% - 40% below
+print("\n" + "HH Income 25% -  40% below: Make Feature Layer, Select Layer by Loction, Calculate, Clear Selection")
+arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '25% - 40% below'", "", "")
 print("\n" + arcpy.GetMessages())
 arcpy.SelectLayerByLocation_management("streetSelectLayer", "INTERSECT", "hhIncomeLayer", "", "NEW_SELECTION", "")
 print("\n" + arcpy.GetMessages())
@@ -204,9 +204,9 @@ print("\n" + arcpy.GetMessages())
 arcpy.SelectLayerByAttribute_management("streetSelectLayer", "CLEAR_SELECTION", "")
 print("\n" + arcpy.GetMessages())
 
-# 40k and below
-print("\n" + "HH Income 40k and below: Make Feature Layer, Select Layer by Location, Calculate, Clear Selection")
-arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '40k and below'", "", "")
+# 40% - 100% below
+print("\n" + "HH Income 40% - 100% below: Make Feature Layer, Select Layer by Location, Calculate, Clear Selection")
+arcpy.MakeFeatureLayer_management(hhIncome, "hhIncomeLayer", "Median_HH_Income_Merge = '40% - 100% below'", "", "")
 print("\n" + arcpy.GetMessages())
 arcpy.SelectLayerByLocation_management("streetSelectLayer", "INTERSECT", "hhIncomeLayer", "", "NEW_SELECTION", "")
 print("\n" + arcpy.GetMessages())

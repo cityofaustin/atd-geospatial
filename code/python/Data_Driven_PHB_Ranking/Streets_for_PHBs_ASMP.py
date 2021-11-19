@@ -13,7 +13,7 @@ arcpy.env.overwriteOutput = True
 arcpy.env.qualifiedFieldNames = False
 
 # Set variables for the environment and input data layers
-sdeConn = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Maps\\PHB_Pro_Project\\"
+sdeConn = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Maps\\PHB_Pro_Project\\gisdm.sde\\"
 sdeStreet = sdeConn + "TRANSPORTATION.asmp_street_network"
 sdeJuris = sdeConn + "BOUNDARIES.jurisdictions"
 sdeCouncil = sdeConn + "BOUNDARIES.single_member_districts"
