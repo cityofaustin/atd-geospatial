@@ -3,7 +3,7 @@
 # Creates new Churches, Schools, and Multifamily layers based land_use_inventory, tcad_property and wcad_owner tables
 # Additionally creates dissolved Parks layer
 # Created by: Jaime McKeown
-# Modified on: 10/18/2021
+# Modified on: 1/3/2022
 #------------------------------------
 
 # Import modules
@@ -17,8 +17,8 @@ arcpy.env.qualifiedFieldNames = False
 sdeWorkspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Maps\\PHB_Pro_Project\\"
 sdeLanduse = sdeWorkspace + "gisdm.sde\\PLANNINGCADASTRE.land_use_inventory"
 sdeParks = sdeWorkspace + "gisdm.sde\\BOUNDARIES.city_of_austin_parks"
-sdeTcad = sdeWorkspace + "gisdm_external.sde\\EXTERNAL.tcad_property"
-sdeWcad = sdeWorkspace + "gisdm_external.sde\\EXTERNAL.wcad_owner"
+sdeTcad = sdeWorkspace + "gisdm.sde\\EXTERNAL.tcad_property"
+sdeWcad = sdeWorkspace + "gisdm.sde\\EXTERNAL.wcad_owner"
 workspace = "g:\\ATD\\ATD_GIS\\Arterial_Management\\56_Pedestrian_Hybrid_Beacon_PHB\\Data_Driven_PHB_Ranking\\DTS\\Data\\"
 
 # Set environment to scratch workspace and FGDB
