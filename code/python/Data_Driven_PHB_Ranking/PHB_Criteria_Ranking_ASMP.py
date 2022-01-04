@@ -2,7 +2,7 @@
 # PHB_Criteria_Ranking_ASMP.py
 # Processes all the data inputs to populate the ranking for all ASMP street segments in Street_for_PHBs layer
 # Created by: Jaime McKeown
-# Modified on: 10/19/2021
+# Modified on: 1/3/2022
 #------------------------------------
 
 # Import modules
@@ -282,7 +282,7 @@ print("\n" + arcpy.GetMessages())
 # Codeblock to calculate CSR
 signalReqPhbCodeblock = """
 def CalcField(OID,FID,Status):
-    if OID == FID and Status <> 'RECOMMENDED':
+    if OID == FID and Status != 'RECOMMENDED':
         return 3
     elif OID == FID and Status == 'RECOMMENDED':
         return -1
